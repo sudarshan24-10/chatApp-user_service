@@ -6,6 +6,7 @@ from configurations.logging_config import setup_logging
 from configurations.db_config import init_db
 from flask_cors import CORS
 from models.user_model import db
+from flask_restx import Api
 
 def create_app():
 
@@ -20,6 +21,8 @@ def create_app():
     
     # init_db(app)
     db.init_app(app)
+
+    api = Api(app, version=1.0, title= "user_service api documentation", description="user service documentation")
 
     migrate = Migrate(app, db, directory=os.path.join(os.getcwd(), 'repositories', 'db', 'sql', 'migrations'))
 
