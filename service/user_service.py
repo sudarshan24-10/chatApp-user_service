@@ -4,7 +4,6 @@ logger = logging.getLogger(__name__)
 
 class User_service:
     
-
     def register(self,data):
         try:
             logger.info(f"registering user: {data}")
