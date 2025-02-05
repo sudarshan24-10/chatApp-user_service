@@ -5,7 +5,6 @@ from configurations.config import config
 from configurations.logging_config import setup_logging
 from configurations.db_config import init_db
 from flask_cors import CORS
-from models.user_model import db
 from routes.user_route import UserRoute
 from utils.error_util import CustomError
 # from configurations.swagger_config import init_api
@@ -20,7 +19,7 @@ def create_app():
     CORS(app, origins=["http://localhost:3000"])  # Enable CORS for frontend app (React, for example)
     
     # Initialize database
-    db.init_app(app)
+    db = init_db(app)
     
     # Initialize Flask-RESTX API
     # api=init_api(app)

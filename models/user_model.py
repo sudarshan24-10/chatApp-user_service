@@ -1,14 +1,13 @@
 import uuid
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.dialects.postgresql import UUID
+from configurations.db_config import db
 from datetime import datetime
-
-db = SQLAlchemy()
 
 class User(db.Model):
     __tablename__ = 'users'
 
     # Define the columns for the user table
-    id = db.Column(db.String(36), primary_key=True, default=str(uuid.uuid4()))  # UUID as primary key
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)  # UUID as primary key
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
@@ -22,7 +21,7 @@ class User(db.Model):
 
     def to_dict(self):
         return {
-            "id": self.id,
+            "id": str(self.id),
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
