@@ -6,7 +6,6 @@ from datetime import datetime
 class User(db.Model):
     __tablename__ = 'users'
 
-    # Define the columns for the user table
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)  # UUID as primary key
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)

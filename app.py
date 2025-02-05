@@ -13,7 +13,7 @@ def create_app():
 
     app.config.from_object(config)
 
-    # Logger setup
+
     setup_logging()
 
     CORS(app, origins=["http://localhost:3000"])  # Enable CORS for frontend app (React, for example)
@@ -26,7 +26,7 @@ def create_app():
 
     migrate = Migrate(app, db, directory=os.path.join(os.getcwd(), 'repositories', 'db', 'sql', 'migrations'))
 
-    # Registering error handler
+   
     @app.errorhandler(CustomError)
     def handle_custom_error(error):
         response = jsonify({"error": error.message})
@@ -38,7 +38,6 @@ def create_app():
     def health_check():
         return jsonify({"status": "success", "message": "App is running"}), 200
 
-    # Register User routes with Namespace, not Blueprint here
     app.register_blueprint(UserRoute.bp,url_prefix="/api/users")
 
     return app

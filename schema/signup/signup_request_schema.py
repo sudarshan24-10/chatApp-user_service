@@ -13,5 +13,7 @@ class SignupRequestSchema(Schema):
     )
     password = fields.String(required=True, validate=validate.Length(min=6, max=128))
     profile_pic = fields.String(required=False)
+    status_message = fields.String(required=False, default="Hi", validate=validate.Length(min=1, max=30))
+
 
 signup_schema = SignupRequestSchema()

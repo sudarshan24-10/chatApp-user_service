@@ -1,7 +1,7 @@
 from abstract_repositories.abstract_db.sql.user_db_process import AbstractUserDB
 from models.user_model import User , db
-
-
+from usecase.password_hashing_usecase import HashPassword
+import json
 
 class UserDBProcess(AbstractUserDB):
 
@@ -12,7 +12,7 @@ class UserDBProcess(AbstractUserDB):
             raise e
 
     def find_by_id(self, user_id: int):
-        return self.users.get(user_id)
+        pass
 
     def create(self, user_data: dict):
         try:
@@ -21,29 +21,24 @@ class UserDBProcess(AbstractUserDB):
             if existing_user:
                 raise ValueError(f"User with email {user_data.get('email')} already exists.")
             
+            hash_password = HashPassword()
+            user_data['password'] = hash_password.process(user_data['password'])
+            
             new_user = User(**user_data)
 
-            new_user.to_dict()
             db.session.add(new_user)
+
             db.session.commit()
-            return new_user
+
+            data=new_user.to_dict()
+            return data
 
         except Exception as e:
             db.session.rollback()
             raise e
 
     def update(self, user):
-        user_id = user.get('id')
-        if user_id and user_id in self.users:
-            # Update the stored user's data.
-            self.users[user_id].update(user)
-            return self.users[user_id]
-        return None
+        pass
 
     def delete(self, user):
-        # Delete a user from the "database". The user dict should contain an 'id' key.
-        user_id = user.get('id')
-        if user_id and user_id in self.users:
-            del self.users[user_id]
-            return True
-        return False
+        pass
