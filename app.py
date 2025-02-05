@@ -34,7 +34,7 @@ def create_app():
         return response
 
     # Health check route
-    @app.route("/health", methods=["GET"])
+    @app.route("/", methods=["GET"])
     def health_check():
         return jsonify({"status": "success", "message": "App is running"}), 200
 
@@ -45,4 +45,5 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
+    print(f"Server running on port http://localhost:{config.PORT}")
     app.run(port=config.PORT, debug=config.DEBUG)

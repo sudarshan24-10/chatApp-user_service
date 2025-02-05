@@ -15,7 +15,6 @@ class UserDBProcess(AbstractUserDB):
         return self.users.get(user_id)
 
     def create(self, user_data: dict):
-        print("Creating user: %s" % user_data)
         try:
             existing_user = self.find_by_email(user_data['email'])
 

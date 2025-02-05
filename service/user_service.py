@@ -9,7 +9,6 @@ class User_service:
         
     def register(self,data):
         try:
-            logger.info(f"registering user: {data}")
             sql_db_process = UserDBProcess()
             registration_usecase = Registration_usecase(sql_db_process)
             response = registration_usecase.register(data)

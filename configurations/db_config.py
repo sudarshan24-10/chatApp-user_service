@@ -4,11 +4,10 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-db = SQLAlchemy()
+db = SQLAlchemy() 
 migrate = Migrate()
 
 def init_db(app):
-    # logger.info('Initializing', app)
     db.init_app(app)
     migrate.init_app(app, db)
     return db
