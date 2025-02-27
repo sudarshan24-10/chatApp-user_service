@@ -1,0 +1,38 @@
+# Ignore .env and other sensitive files
+.env
+
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment-specific files
+*.sqlite3
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore virtual environment directories
+.venv/
+venv/
+env/
+
+# Ignore migration files
+migrations/
+
+# Ignore coverage reports
+*.coverage
+*.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+*.hypothesis/
+
+# Ignore IDE files (e.g., VSCode, PyCharm)
+.vscode/
+.idea/
+
+# Ignore the structure file
+structure.txt
